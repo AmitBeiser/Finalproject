@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:ParkinApp.ViewModels"
+             x:Class="ParkinApp.Views.AddEditVehicleView"
+             x:DataType="viewmodels:AddEditVehicleViewModel"
+             Title="{Binding PageTitle}">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="25" Spacing="15">
+
+            <Image Source="{Binding PhotoURL}"
+                   HeightRequest="140"
+                   WidthRequest="140"
+                   Aspect="AspectFill"
+                   HorizontalOptions="Center" />
+
+            <Button Text="Choose Vehicle Photo"
+                    Command="{Binding PickPhotoCommand}"
+                    HorizontalOptions="Center" />
+
+            <Label Text="Vehicle Model" />
+            <Entry Placeholder="e.g. VW Golf GTI or BMW 320i"
+                   Text="{Binding ModelName}" />
+
+            <Label Text="License Plate" />
+            <Entry Placeholder="e.g. 12-345-67"
+                   Text="{Binding LicensePlate}" />
+
+            <Label Text="{Binding ErrorMsg}"
+                   TextColor="Red"
+                   HorizontalOptions="Center" />
+
+            <Button Text="Save Vehicle"
+                    Command="{Binding SaveCommand}" />
+
+            <Button Text="Cancel"
+                    BackgroundColor="Transparent"
+                    TextColor="Gray"
+                    Command="{Binding CancelCommand}" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

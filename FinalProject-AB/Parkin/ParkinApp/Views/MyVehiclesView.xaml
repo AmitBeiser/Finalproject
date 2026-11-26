@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:ParkinApp.Models"
+             xmlns:viewmodels="clr-namespace:ParkinApp.ViewModels"
+             x:Class="ParkinApp.Views.MyVehiclesView"
+             x:DataType="viewmodels:MyVehiclesViewModel"
+             Title="My Vehicles">
+
+    <Grid RowDefinitions="Auto, *, Auto" Padding="20" RowSpacing="15">
+
+        <Button Grid.Row="0"
+                Text="+ Add New Vehicle"
+                Command="{Binding AddVehicleCommand}" />
+
+        <CollectionView Grid.Row="1"
+                        ItemsSource="{Binding Vehicles}">
+            <CollectionView.EmptyView>
+                <Label Text="No vehicles added yet. Tap '+ Add New Vehicle' above."
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center"
+                       TextColor="Gray" />
+            </CollectionView.EmptyView>
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="models:Vehicle">
+                    <Border Margin="0,5" Padding="12" Stroke="LightGray" StrokeShape="RoundRectangle 10">
+                        <Grid ColumnDefinitions="70, *, Auto, Auto" ColumnSpacing="10">
+
+                            <!-- תמונת הרכב -->
+                            <Image Grid.Column="0"
+                                   Source="{Binding VehicleImagePath}"
+                                   HeightRequest="60"
+                                   WidthRequest="60"
+                                   Aspect="AspectFill" />
+
+                            <!-- פרטי הרכב -->
+                            <VerticalStackLayout Grid.Column="1" VerticalOptions="Center">
+                                <Label Text="{Binding ModelName}"
+                                       FontSize="16"
+                                       FontAttributes="Bold" />
+                                <Label Text="{Binding LicensePlate}"
+                                       FontSize="13"
+                                       TextColor="Gray" />
+                            </VerticalStackLayout>
+
+                            <!-- כפתור עריכה -->
+                            <Button Grid.Column="2"
+                                    Text="Edit"
+                                    VerticalOptions="Center"
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:MyVehiclesViewModel}}, Path=EditVehicleCommand}"
+                                    CommandParameter="{Binding .}" />
+
+                            <!-- כפתור מחיקה -->
+                            <Button Grid.Column="3"
+                                    Text="Delete"
+                                    BackgroundColor="Crimson"
+                                    TextColor="White"
+                                    VerticalOptions="Center"
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:MyVehiclesViewModel}}, Path=DeleteVehicleCommand}"
+                                    CommandParameter="{Binding .}" />
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <Button Grid.Row="2"
+                Text="Done"
+                Command="{Binding DoneCommand}" />
+
+    </Grid>
+</ContentPage>

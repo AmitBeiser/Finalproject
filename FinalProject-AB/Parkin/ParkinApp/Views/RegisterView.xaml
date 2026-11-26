@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:ParkinApp.ViewModels"
+             x:Class="ParkinApp.Views.RegisterView"
+             x:DataType="viewmodels:RegisterViewModel"
+             Title="Create Account">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="25" Spacing="12">
+
+            
+            <Image Source="{Binding PhotoURL}"
+                   HeightRequest="110"
+                   WidthRequest="110"
+                   Aspect="AspectFill"
+                   HorizontalOptions="Center" />
+
+            <Button Text="Choose Profile Photo"
+                    Command="{Binding UploadPhotoCommand}"
+                    HorizontalOptions="Center" />
+
+            <Label Text="Full Name" />
+            <Entry Placeholder="e.g. Amit Beiser" Text="{Binding FullName}" />
+
+            <Label Text="Username" />
+            <Entry Placeholder="e.g. amit_golf" Text="{Binding UserName}" />
+
+            <Label Text="Email" />
+            <Entry Placeholder="Enter email" Keyboard="Email" Text="{Binding Email}" />
+
+            <Label Text="Password" />
+            <Entry Placeholder="Enter password" IsPassword="True" Text="{Binding Password}" />
+
+            <!-- Vehicles Section -->
+            <Border Stroke="Gray" Padding="12" Margin="0,10,0,0">
+                <VerticalStackLayout Spacing="8">
+                    <Label Text="{Binding VehiclesCountText}"
+                           FontAttributes="Bold"
+                           HorizontalOptions="Center" />
+                    <Button Text="Manage My Vehicles"
+                            Command="{Binding ManageVehiclesCommand}" />
+                </VerticalStackLayout>
+            </Border>
+
+            <Label Text="{Binding ErrorMsg}"
+                   TextColor="Red"
+                   HorizontalOptions="Center" />
+
+            <Button Text="Sign Up"
+                    Command="{Binding RegisterCommand}" />
+
+            <Button Text="Already have an account? Login"
+                    BackgroundColor="Transparent"
+                    TextColor="DodgerBlue"
+                    Command="{Binding BackToLoginCommand}" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

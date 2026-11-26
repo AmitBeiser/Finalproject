@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:ParkinApp.ViewModels"
+             x:Class="ParkinApp.Views.FeedView"
+             x:DataType="viewmodels:FeedViewModel"
+             Title="Parkin' Feed">
+
+    <VerticalStackLayout Padding="25" Spacing="20" VerticalOptions="Center">
+        <Label Text="{Binding WelcomeText}"
+               FontSize="22"
+               FontAttributes="Bold"
+               HorizontalOptions="Center" />
+
+        <Label Text="Your parking feed will appear here!"
+               TextColor="Gray"
+               HorizontalOptions="Center" />
+
+        <Button Text="Logout"
+                BackgroundColor="Crimson"
+                TextColor="White"
+                Command="{Binding LogoutCommand}" />
+    </VerticalStackLayout>
+</ContentPage>

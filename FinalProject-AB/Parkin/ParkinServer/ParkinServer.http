@@ -1,0 +1,6 @@
+@ParkinServer_HostAddress = http://localhost:5172
+
+GET {{ParkinServer_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
